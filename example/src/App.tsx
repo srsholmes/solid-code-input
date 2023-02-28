@@ -68,8 +68,8 @@ export function App() {
               placeholder="Input your code here..."
               prismJS={Prism}
               onChange={setInput}
-              value={input}
-              language={languagePrism}
+              value={input()}
+              language={languagePrism()}
             />
           </div>
         </Show>
@@ -84,9 +84,9 @@ export function App() {
             resize="vertical"
             placeholder="Input your code here..."
             highlightjs={highlightjs}
-            language={languageHighlight}
             onChange={setInput}
-            value={input}
+            value={input()}
+            language={languageHighlight()}
           />
         </Show>
         <LanguageSelect

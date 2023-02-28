@@ -50,8 +50,8 @@ CodeInput takes the following props:
 |---------------|-----------------------------------------------------|-----------------------------------------------------------------------------------|
 | `prismJS` | `typeof Prism` | Optional. An instance of the Prism library for syntax highlighting. |
 | `highlightjs` | `typeof highlightjs` | Optional. An instance of the Highlight.js library for syntax highlighting. |
-| `value` | `Accessor<string>` | Required. A state accessor for the value of the code input. |
-| `language` | `Accessor<string>` | Required. A state accessor for the language of the code input. |
+| `value` | `string` | Required. The value of the code input. |
+| `language` | `string` | Required. The language of the code input. |
 | `onChange` | `(value: string) => void` | Required. A callback function that is called when the value of the input changes. |
 | `placeholder` | `string` | Optional. Placeholder text for the input. |
 | `resize` | `'both'` \| `'horizontal'` \| `'vertical'` | Optional. Specifies whether the input can be resized, and in which direction. |
@@ -63,8 +63,8 @@ CodeInput takes the following props:
 export type CodeInputProps = {
   prismJS?: typeof Prism;
   highlightjs?: typeof highlightjs;
-  value: Accessor<string>;
-  language: Accessor<string>;
+  value: string;
+  language: string;
   onChange: (value: string) => void;
   placeholder?: string;
   resize?: 'both' | 'horizontal' | 'vertical';
