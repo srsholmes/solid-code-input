@@ -38,8 +38,8 @@ import { CodeInput } from '@srsholmes/code-input';
   placeholder="Input your code here..."
   prismJS={Prism}
   onChange={setInput}
-  value={input}
-  language={languagePrism}
+  value={'const hello = "world";'}
+  language={'typescript'}
 />;
 ```
 
