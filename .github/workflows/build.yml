@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Publish to Node Package Manager
+      # TODO: Publish to Node Package Manager
       - name: Checkout Repo
         uses: actions/checkout@main
 
