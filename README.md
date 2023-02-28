@@ -10,7 +10,7 @@ It supports both [PrismJS](https://prismjs.com/) and [HighlightJS](https://highl
 
 ## Features
 
-- Very Lightweight (no dependencies)
+- Very Lightweight
 - Easier to use than CodeMirror, Ace, and Monaco
 - Supports both PrismJS and HighlightJS
 - Auto Indentation
