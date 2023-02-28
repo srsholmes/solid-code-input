@@ -9,17 +9,26 @@ import './themes/nord-prism.css';
 
 const exampleCode = `import { render } from 'solid-js/web';
 import { createSignal, createEffect } from 'solid-js';
+import Prism from 'prismjs';
+import { CodeInput } from '@srsholmes/solid-code-input';
 
-function Counter() {
-  const [count, setCount] = createSignal(0);
-  createEffect(() => {
-    console.log("The count is now", count());
-  });
+function App() {
+  const [input, setInput] = createSignal('');
 
-  return <button onClick={() => setCount(count() + 1)}>Click Me</button>;
+  return (
+    <CodeInput
+      placeholder="Input your code here..."
+      prismJS={Prism}
+      onChange={setInput}
+      language={'jsx'}
+      autoHeight={true}
+      resize="both"
+      value={input}
+    />
+  );
 }
 
-render(() => <Counter />, document.getElementById('app'));
+render(() => <App />, document.getElementById('app'));
 `;
 
 export function App() {

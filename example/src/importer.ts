@@ -31,6 +31,6 @@ export async function importHighlightLanguage(args: { language: string }) {
   ) {
     return;
   }
-  const lang = await highlightImportMap[args.language.toLowerCase()]();
+  const lang = await highlightImportMap[args.language.toLowerCase()]?.();
   return highlightjs.registerLanguage(args.language, lang.default);
 }
