@@ -1,0 +1,80 @@
+/* Original CSS written by Oliver Geer (WebCoder49) */
+/* https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/ */
+/* Updated for solid-code-input */
+
+.code-input * {
+  box-sizing: border-box;
+}
+
+.code-input {
+  box-sizing: border-box;
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  overflow: hidden;
+  min-height: 76px;
+  font-size: 16px;
+  font-family: monospace;
+  line-height: normal;
+  tab-size: 2;
+  caret-color: darkgrey;
+  white-space: pre;
+}
+
+.code-input.resize-both {
+  resize: both;
+}
+
+.code-input.resize-horizontal {
+  resize: horizontal;
+}
+
+.code-input.resize-vertical {
+  resize: vertical;
+}
+
+.code-input textarea,
+.code-input pre {
+  margin: 0 !important;
+  padding: 1rem;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.code-input textarea,
+.code-input pre,
+.code-input pre * {
+  font-size: inherit !important;
+  font-family: inherit !important;
+  line-height: inherit !important;
+  tab-size: inherit !important;
+}
+
+.code-input textarea {
+  z-index: 1;
+  resize: none;
+  outline: none !important;
+}
+.code-input pre {
+  z-index: 0;
+}
+
+.code-input textarea {
+  color: transparent;
+  background: transparent;
+  caret-color: inherit !important;
+}
+
+.code-input textarea,
+.code-input pre {
+  overflow: auto !important;
+  white-space: inherit;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+}

@@ -1,0 +1,66 @@
+{
+  "name": "solid-code-input",
+  "version": "0.0.1",
+  "description": "Simple Code Input with syntax highlighting for SolidJS",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srsholmes/solid-code-input.git"
+  },
+  "exports": {
+    ".": {
+      "solid": "./dist/source/index.jsx",
+      "import": "./dist/esm/index.js",
+      "browser": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "node": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "solidjs",
+    "code",
+    "input",
+    "highlight"
+  ],
+  "author": "Simon Holmes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/srsholmes/solid-code-input/issues"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "rollup -c",
+    "minify": "terser --compress --mangle --module -- dist/cjs/index.js > dist/cjs/index.min.js",
+    "format": "prettier --write src example"
+  },
+  "homepage": "https://github.com/srsholmes/solid-code-input#readme",
+  "dependencies": {},
+  "peerDependencies": {
+    "solid-js": "^1.6.10",
+    "@types/highlight.js": "9.12.2",
+    "@types/prismjs": "1.26.0"
+  },
+  "devDependencies": {
+    "postcss": "8.4.21",
+    "rollup-plugin-postcss": "4.0.2",
+    "@rollup/plugin-babel": "^6.0.0",
+    "@types/node": "^18.7.16",
+    "prettier": "^2.7.1",
+    "rollup": "^2.75.7",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-preset-solid": "^1.4.0",
+    "solid-js": "^1.6.10",
+    "terser": "^5.14.1",
+    "typescript": "^4.9.5"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "all"
+  }
+}
