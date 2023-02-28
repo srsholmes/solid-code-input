@@ -6,8 +6,6 @@ Solid Code Input is a small component for SolidJS that allows you to create a li
 
 https://user-images.githubusercontent.com/3579905/222004627-7ee529ea-6cca-444d-9908-cc6ad5a93a8b.mp4
 
-![solid-code-input](./resources/example.png 'solid-code-input')
-
 It supports both [PrismJS](https://prismjs.com/) and [HighlightJS](https://highlightjs.org/) to do the syntax highlighting, and will use either depending on which library you pass in as a prop.
 
 ## Features
@@ -48,19 +46,19 @@ import { CodeInput } from '@srsholmes/code-input';
 ## API
 
 CodeInput takes the following props:
-| Name          | Type                                                | Description                                                                       |
+| Name | Type | Description |
 |---------------|-----------------------------------------------------|-----------------------------------------------------------------------------------|
-| `prismJS`     | `typeof Prism`                                     | Optional. An instance of the Prism library for syntax highlighting.              |
-| `highlightjs` | `typeof highlightjs`                               | Optional. An instance of the Highlight.js library for syntax highlighting.        |
-| `value`       | `Accessor<string>`                                 | Required. A state accessor for the value of the code input.                        |
-| `language`    | `Accessor<string>`                                 | Required. A state accessor for the language of the code input.                     |
-| `onChange`    | `(value: string) => void`                          | Required. A callback function that is called when the value of the input changes. |
-| `placeholder` | `string`                                            | Optional. Placeholder text for the input.                                         |
-| `resize`      | `'both'` \| `'horizontal'` \| `'vertical'`         | Optional. Specifies whether the input can be resized, and in which direction.     |
-| `autoHeight`  | `boolean`                                           | Optional. Specifies whether the input height should adjust automatically.         |
-
+| `prismJS` | `typeof Prism` | Optional. An instance of the Prism library for syntax highlighting. |
+| `highlightjs` | `typeof highlightjs` | Optional. An instance of the Highlight.js library for syntax highlighting. |
+| `value` | `Accessor<string>` | Required. A state accessor for the value of the code input. |
+| `language` | `Accessor<string>` | Required. A state accessor for the language of the code input. |
+| `onChange` | `(value: string) => void` | Required. A callback function that is called when the value of the input changes. |
+| `placeholder` | `string` | Optional. Placeholder text for the input. |
+| `resize` | `'both'` \| `'horizontal'` \| `'vertical'` | Optional. Specifies whether the input can be resized, and in which direction. |
+| `autoHeight` | `boolean` | Optional. Specifies whether the input height should adjust automatically. |
 
 ## Types
+
 ```ts
 export type CodeInputProps = {
   prismJS?: typeof Prism;
@@ -74,10 +72,27 @@ export type CodeInputProps = {
 };
 ```
 
+## Example App
+
+![solid-code-input](./resources/example.png 'solid-code-input')
+
+To run the example app, clone the repo and run the following commands:
+
+```bash
+git clone https://github.com/srsholmes/solid-code-input
+yarn # Install dependencies
+yarn build # Build the component from source
+cd example
+yarn
+yarn dev
+```
+
 ## Shout outs
+
 Shout out to Oliver Geer (WebCoder49) for this awesome article which inspired this component [Creating an Editable Textarea That Supports Syntax-Highlighted Code](https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/).
 
 The method used was heavily inspired by this repo [code-input](https://github.com/WebCoder49/code-input), and the auto indent was taken directly from his indent plugin.
 
 ## License
+
 MIT
