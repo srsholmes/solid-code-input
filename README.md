@@ -5,7 +5,7 @@
 Solid Code Input is a small component for SolidJS that allows you to create a lightweight text area component which will automatically syntax highlight the code you type in it. It is designed for basic use cases where you want to display code to the user, and allow them to edit it, without all the overhead of a full blown code editor.
 
 ![solid-code-input](./resources/demo.gif 'solid-code-input')
-![solid-code-input](./resources/solid-code-input.png 'solid-code-input')
+![solid-code-input](./resources/example.png 'solid-code-input')
 
 It supports both [PrismJS](https://prismjs.com/) and [HighlightJS](https://highlightjs.org/) to do the syntax highlighting, and will use either depending on which library you pass in as a prop.
 
