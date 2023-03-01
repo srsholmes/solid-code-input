@@ -6,7 +6,9 @@ export default withSolid({
   input: 'src/index.tsx',
   plugins: [
     postcss({
-      extract: false,
+      include: ['**/*.module.css', '**/*.scss'],
+      // extract: 'dist/source/components/CodeInput/styles.module.css',
+      // extract: false,
       modules: true,
     }),
   ],

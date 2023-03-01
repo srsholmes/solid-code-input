@@ -42,7 +42,7 @@
   },
   "sideEffects": false,
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c && node scripts/copy.js",
     "minify": "terser --compress --mangle --module -- dist/cjs/index.js > dist/cjs/index.min.js",
     "format": "prettier --write src example"
   },
