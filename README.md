@@ -28,7 +28,7 @@ yarn add @srsholmes/solid-code-input
 ## Usage
 
 ```jsx
-import { CodeInput } from '@srsholmes/code-input';
+import { CodeInput } from '@srsholmes/solid-code-input';
 
 <CodeInput
   autoHeight={true}
