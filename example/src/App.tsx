@@ -1,9 +1,9 @@
-import Prism from 'prismjs';
 import highlightjs from 'highlight.js';
-import { createEffect, createSignal, Show } from 'solid-js';
-import styles from './App.module.css';
+import Prism from 'prismjs';
+import { createSignal, onMount, Show } from 'solid-js';
 import { CodeInput } from '../../dist/esm';
-import { importHighlightLanguage, importPrismLanguage } from './importer';
+import styles from './App.module.css';
+
 import './themes/nord-highlight.css';
 import './themes/nord-prism.css';
 
@@ -31,6 +31,20 @@ function App() {
 render(() => <App />, document.getElementById('app'));
 `;
 
+// Syntax Highlight libraries to generate the tokens.
+//  It's up to you to import them.
+const libs = [
+  import('prismjs/components/prism-markup'),
+  import('prismjs/components/prism-typescript'),
+  import('prismjs/components/prism-javascript'),
+  import('prismjs/components/prism-jsx'),
+  import('prismjs/components/prism-markup'),
+  import('prismjs/components/prism-css'),
+  import('highlight.js/lib/languages/typescript'),
+  import('highlight.js/lib/languages/javascript'),
+  import('highlight.js/lib/languages/css'),
+];
+
 export function App() {
   // Our code input
   const [input, setInput] = createSignal(exampleCode);
@@ -39,19 +53,12 @@ export function App() {
   // CodeInput will use either library if you pass it in.
   const [loadedPrism, setLoadedPrism] = createSignal(false);
   const [loadedHighlight, setLoadedHighlight] = createSignal(true);
-  const [languagePrism, setLanguagePrism] = createSignal('typescript');
+  const [languagePrism, setLanguagePrism] = createSignal('jsx');
   const [languageHighlight, setLanguageHighlight] = createSignal('typescript');
 
-  // Only show the code input when the syntax highlight libraries are loaded.
-  createEffect(async () => {
-    await importPrismLanguage({
-      language: languagePrism?.() || 'typescript',
-    });
+  onMount(async () => {
+    await Promise.all(libs);
     setLoadedPrism(true);
-
-    await importHighlightLanguage({
-      language: languageHighlight?.() || 'typescript',
-    });
     setLoadedHighlight(true);
   });
 

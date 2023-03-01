@@ -1,6 +1,6 @@
 {
   "name": "@srsholmes/solid-code-input",
-  "version": "0.0.11",
+  "version": "0.0.13",
   "description": "Simple Code Input with syntax highlighting for SolidJS",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -43,6 +43,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "rollup -c && node scripts/copy.js",
+    "dev:local": "rollup -c --watch",
     "minify": "terser --compress --mangle --module -- dist/cjs/index.js > dist/cjs/index.min.js",
     "format": "prettier --write src example"
   },

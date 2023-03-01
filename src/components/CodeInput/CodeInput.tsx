@@ -5,6 +5,10 @@ import styles from './styles.module.css';
 
 export const CodeInput: Component<CodeInputProps> = (props) => {
   const merged = mergeProps({ autoHeight: true }, props);
+
+  const language = () => merged.language || 'typescript';
+  const value = () => merged.value || '';
+
   let preElement: HTMLPreElement;
   let textAreaElement: HTMLTextAreaElement;
   let wrapperElement: HTMLDivElement;
@@ -53,24 +57,25 @@ export const CodeInput: Component<CodeInputProps> = (props) => {
   const codeTokens = () => {
     try {
       if (merged.prismJS) {
-        if (merged.prismJS.languages[merged.language]) {
+        if (merged.prismJS.languages[language()]) {
           if (merged.autoHeight) {
             autoHeight();
           }
-          return merged.prismJS.highlight(
-            merged.value,
-            merged.prismJS.languages[merged.language],
-            merged.language,
+          const tokens = merged.prismJS.highlight(
+            value(),
+            merged.prismJS.languages[language()],
+            language(),
           );
+          return tokens;
         } else {
           if (merged.autoHeight) {
             autoHeight();
           }
-          return merged.prismJS.util.encode(merged.value).toString();
+          return merged.prismJS.util.encode(value()).toString();
         }
       } else if (merged.highlightjs) {
-        const tokens = merged.highlightjs.highlight(merged.value, {
-          language: merged.language,
+        const tokens = merged.highlightjs.highlight(value(), {
+          language: language(),
         }).value;
         if (merged.autoHeight) {
           autoHeight();
@@ -127,12 +132,12 @@ export const CodeInput: Component<CodeInputProps> = (props) => {
         onScroll={syncScroll}
         ref={textAreaElement!}
         spellcheck={false}
-        value={merged.value}
+        value={value()}
         oninput={handleInput}
       ></textarea>
       <pre
         ref={preElement!}
-        class={`language-${merged.language}`}
+        class={`language-${language()}`}
         aria-hidden={true}
       >
         <div innerHTML={codeTokens()} class="code-highlighted"></div>
