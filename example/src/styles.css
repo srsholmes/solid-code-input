@@ -20,6 +20,10 @@ code {
     monospace;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 #root {
   width: 100vh;
 }

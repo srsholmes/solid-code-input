@@ -44,8 +44,8 @@ export const CodeInput: Component<CodeInputProps> = (props) => {
     const rem = parseFloat(
       window.getComputedStyle(document.documentElement).fontSize,
     );
-    outerElement.style.width = `${width - rem}px`;
-    outerElement.style.height = `${height - rem}px`;
+    outerElement.style.width = `${width + rem}px`;
+    outerElement.style.height = `${height + rem}px`;
   }
 
   function getTextareaSize() {
