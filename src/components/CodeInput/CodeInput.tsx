@@ -9,6 +9,8 @@ export const CodeInput: Component<CodeInputProps> = (props) => {
   const language = () => merged.language || 'typescript';
   const value = () => merged.value || '';
 
+  console.log({ merged});
+
   let preElement: HTMLPreElement;
   let textAreaElement: HTMLTextAreaElement;
   let wrapperElement: HTMLDivElement;
@@ -27,13 +29,15 @@ export const CodeInput: Component<CodeInputProps> = (props) => {
   });
 
   function setSizes() {
-    const { height, width } = getWrapperSize();
+    const { height, width } = getTextareaSize();
     preElement.style.width = `${width}px`;
     preElement.style.height = `${height}px`;
+    wrapperElement.style.width = `${width}px`;
+    wrapperElement.style.height = `${height}px`;
   }
 
-  function getWrapperSize() {
-    const { height, width } = wrapperElement.getBoundingClientRect();
+  function getTextareaSize() {
+    const { height, width } = textAreaElement.getBoundingClientRect();
     return { height, width };
   }
 
@@ -46,12 +50,19 @@ export const CodeInput: Component<CodeInputProps> = (props) => {
   }
 
   function watchResize() {
-    new ResizeObserver(setSizes).observe(wrapperElement);
+    new ResizeObserver(setSizes).observe(textAreaElement);
   }
 
   function syncScroll() {
     preElement.scrollTop = textAreaElement.scrollTop;
     preElement.scrollLeft = textAreaElement.scrollLeft;
+    // Prevents a scrolling issue when the user manually resizes the wrapper
+    if (textAreaElement.scrollTop > preElement.scrollTop) {
+      textAreaElement.scrollTop = preElement.scrollTop;
+    }
+    if (textAreaElement.scrollLeft > preElement.scrollLeft) {
+      textAreaElement.scrollLeft = preElement.scrollLeft;
+    }
   }
 
   const codeTokens = () => {
@@ -105,13 +116,13 @@ export const CodeInput: Component<CodeInputProps> = (props) => {
   }
 
   function handleMouseDown() {
-    const { height, width } = getWrapperSize();
+    const { height, width } = getTextareaSize();
     wrapperHeight = height;
     wrapperWidth = width;
   }
 
   function handleMouseUp() {
-    const { height, width } = getWrapperSize();
+    const { height, width } = getTextareaSize();
     if (height !== wrapperHeight || width !== wrapperWidth) {
       setManualResize(true);
     }
@@ -122,18 +133,17 @@ export const CodeInput: Component<CodeInputProps> = (props) => {
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       ref={wrapperElement!}
-      class={`${styles['code-input']} ${
-        merged.resize ? styles[`resize-${merged.resize}`] : ''
-      }`}
+      class={styles.wrap}
     >
       <textarea
-        placeholder={merged.placeholder}
-        onkeydown={handleKeyDown}
+        class={`${merged.resize ? styles[`resize-${merged.resize}`] : ''}`}
+        spellcheck={false}
+        onKeyDown={handleKeyDown}
+        onInput={handleInput}
         onScroll={syncScroll}
         ref={textAreaElement!}
-        spellcheck={false}
+        placeholder={merged.placeholder || 'Type code here...'}
         value={value()}
-        oninput={handleInput}
       ></textarea>
       <pre
         ref={preElement!}
