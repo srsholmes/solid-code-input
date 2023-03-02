@@ -9,11 +9,10 @@ export const CodeInput: Component<CodeInputProps> = (props) => {
   const language = () => merged.language || 'typescript';
   const value = () => merged.value || '';
 
-  console.log({ merged});
-
   let preElement: HTMLPreElement;
   let textAreaElement: HTMLTextAreaElement;
   let wrapperElement: HTMLDivElement;
+  let outerElement: HTMLDivElement;
 
   // Used to detect when the user manually resizes the wrapper with handle
   let wrapperHeight: number;
@@ -26,7 +25,13 @@ export const CodeInput: Component<CodeInputProps> = (props) => {
     if (props.autoHeight) {
       autoHeight();
     }
+    setBackgroundWrapper();
   });
+
+  function setBackgroundWrapper() {
+    const preBackground = window.getComputedStyle(preElement).backgroundColor;
+    outerElement.style.backgroundColor = preBackground;
+  }
 
   function setSizes() {
     const { height, width } = getTextareaSize();
@@ -34,6 +39,13 @@ export const CodeInput: Component<CodeInputProps> = (props) => {
     preElement.style.height = `${height}px`;
     wrapperElement.style.width = `${width}px`;
     wrapperElement.style.height = `${height}px`;
+
+    // calculate what 1rem is in pixels
+    const rem = parseFloat(
+      window.getComputedStyle(document.documentElement).fontSize,
+    );
+    outerElement.style.width = `${width - rem}px`;
+    outerElement.style.height = `${height - rem}px`;
   }
 
   function getTextareaSize() {
@@ -129,29 +141,31 @@ export const CodeInput: Component<CodeInputProps> = (props) => {
   }
 
   return (
-    <div
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      ref={wrapperElement!}
-      class={styles.wrap}
-    >
-      <textarea
-        class={`${merged.resize ? styles[`resize-${merged.resize}`] : ''}`}
-        spellcheck={false}
-        onKeyDown={handleKeyDown}
-        onInput={handleInput}
-        onScroll={syncScroll}
-        ref={textAreaElement!}
-        placeholder={merged.placeholder || 'Type code here...'}
-        value={value()}
-      ></textarea>
-      <pre
-        ref={preElement!}
-        class={`language-${language()}`}
-        aria-hidden={true}
+    <div ref={outerElement!} style={`padding: 1rem; background: red;`}>
+      <div
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        ref={wrapperElement!}
+        class={styles.wrap}
       >
-        <div innerHTML={codeTokens()} class="code-highlighted"></div>
-      </pre>
+        <textarea
+          class={`${merged.resize ? styles[`resize-${merged.resize}`] : ''}`}
+          spellcheck={false}
+          onKeyDown={handleKeyDown}
+          onInput={handleInput}
+          onScroll={syncScroll}
+          ref={textAreaElement!}
+          placeholder={merged.placeholder || 'Type code here...'}
+          value={value()}
+        ></textarea>
+        <pre
+          ref={preElement!}
+          class={`language-${language()}`}
+          aria-hidden={true}
+        >
+          <div innerHTML={codeTokens()} class="code-highlighted"></div>
+        </pre>
+      </div>
     </div>
   );
 };

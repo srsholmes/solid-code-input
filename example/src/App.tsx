@@ -68,17 +68,15 @@ export function App() {
       <div>
         <h2>PrismJS</h2>
         <Show when={loadedPrism()}>
-          <div>
-            <CodeInput
-              autoHeight={true}
-              resize="both"
-              placeholder="Input your code here..."
-              prismJS={Prism}
-              onChange={setInput}
-              value={input()}
-              language={languagePrism()}
-            />
-          </div>
+          <CodeInput
+            autoHeight={true}
+            resize="both"
+            placeholder="Input your code here..."
+            prismJS={Prism}
+            onChange={setInput}
+            value={input()}
+            language={languagePrism()}
+          />
         </Show>
 
         <LanguageSelect setLanguage={setLanguagePrism} value={languagePrism} />
