@@ -141,7 +141,11 @@ export const CodeInput: Component<CodeInputProps> = (props) => {
   }
 
   return (
-    <div ref={outerElement!} style={`padding: 1rem; background: red;`}>
+    <div
+      ref={outerElement!}
+      style={`padding: 1rem; box-sizing: border-box;`}
+      class={styles['outer-wrapper']}
+    >
       <div
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}

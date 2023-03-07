@@ -2,6 +2,10 @@
 /* https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/ */
 /* Updated for solid-code-input */
 
+.outer-wrapper * {
+  box-sizing: border-box;
+}
+
 .wrap {
   position: relative;
   display: block;
